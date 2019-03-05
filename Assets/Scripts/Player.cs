@@ -6,12 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	[SerializeField]
-	private float speed = 0.25f;
-	private Vector3 movePosition;
+	private float speed = 10;
+	private Rigidbody rb;
 
 	private void Start()
 	{
-		movePosition = this.transform.position;
+		rb = GetComponent<Rigidbody>();
 	}
 
 	private void Update()
@@ -19,26 +19,30 @@ public class Player : MonoBehaviour
 		// プレイヤーの移動
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
-			movePosition.z += speed;
-			this.transform.position = movePosition;
+			rb.velocity = new Vector3(0, 0, speed);
 		}
 		
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			movePosition.x -= speed;
-			this.transform.position = movePosition;
+			rb.velocity = new Vector3(-speed, 0, 0);
 		}
 		
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
-			movePosition.z -= speed;
-			this.transform.position = movePosition;
+			rb.velocity = new Vector3(0, 0, -speed);
 		}
 		
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			movePosition.x += speed;
-			this.transform.position = movePosition;
+			rb.velocity = new Vector3(speed, 0, 0);
+		}
+
+		if (Input.GetKeyUp(KeyCode.UpArrow) ||
+		    Input.GetKeyUp(KeyCode.LeftArrow) ||
+		    Input.GetKeyUp(KeyCode.DownArrow) ||
+		    Input.GetKeyUp(KeyCode.RightArrow))
+		{
+			rb.velocity = new Vector3(0, 0, 0);
 		}
 	}
 }
