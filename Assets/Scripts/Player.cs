@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				haveDataFlg = true;
+				Debug.Log("データを入手しました！");
 			}
 		}
 		
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				haveDataFlg = false;
+				Debug.Log("データを渡しました！");
 			}
 		}
 	}
