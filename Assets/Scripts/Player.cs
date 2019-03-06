@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				haveDataFlg = true;
-				Debug.Log(other.GetComponent<Terminal>().Password);
+				//Debug.Log(other.GetComponent<Terminal>().Password);
 				Debug.Log("データを入手しました！");
 				haveScore += 100;
 			}
