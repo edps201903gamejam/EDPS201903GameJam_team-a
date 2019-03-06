@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 137358229}
   - component: {fileID: 137358230}
+  - component: {fileID: 137358231}
   m_Layer: 0
   m_Name: GetArea
   m_TagString: GetArea
@@ -239,6 +240,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &137358231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137358228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a821606417ab447ec8590a361e660c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terminalType: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
