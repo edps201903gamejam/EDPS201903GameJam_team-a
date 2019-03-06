@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 	private bool haveDataFlg = false;
 
 	[SerializeField]
-	private float speed = 10;
+	private float moveSpeed = 10;
 	private Rigidbody rb;
 	private float moveX;
 	private float moveZ;
@@ -35,9 +35,9 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		moveX = Input.GetAxis ("Horizontal") * speed;
-		moveZ = Input.GetAxis ("Vertical") * speed;
-		Vector3 direction = new Vector3(moveX / speed , 0, moveZ / speed);
+		moveX = Input.GetAxis ("Horizontal") * moveSpeed;
+		moveZ = Input.GetAxis ("Vertical") * moveSpeed;
+		Vector3 direction = new Vector3(moveX / moveSpeed , 0, moveZ / moveSpeed);
 		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
 		    Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0)
 		{
