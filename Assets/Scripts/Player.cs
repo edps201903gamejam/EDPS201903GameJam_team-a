@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public bool HaveDataFlg
+	{
+		get { return haveDataFlg;}
+		set { value = this.haveDataFlg; }
+	}
+	
 	[SerializeField]
 	private float speed = 10;
 	private Rigidbody rb;
@@ -28,6 +34,7 @@ public class Player : MonoBehaviour
 		{
 			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
+		Debug.Log(HaveDataFlg);
 	}
 
 	private void FixedUpdate()
