@@ -19,14 +19,15 @@ public class Player : MonoBehaviour
 	}
 
 	private bool haveDataFlg = false;
+	private int haveScore = 0;
 
 	[SerializeField]
 	private float moveSpeed = 10;
 	private Rigidbody rb;
 	private float moveX;
 	private float moveZ;
-	private int haveScore = 0;
-
+	private string remainingString;
+	private string enteredString;
 
 	private void Start()
 	{
@@ -47,23 +48,25 @@ public class Player : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		// プレイヤーの移動
 		rb.velocity = new Vector3(moveX, 0, moveZ);
 	}
 
 	private void OnTriggerStay(Collider other)
 	{
 		// 端末からのデータの取得と端末へのデータの受け渡し
-		if (other.CompareTag("GetArea") && haveDataFlg == false)
+		if (other.CompareTag("GetArea") && !haveDataFlg)
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				haveDataFlg = true;
+				Debug.Log(other.GetComponent<Terminal>().Password);
 				Debug.Log("データを入手しました！");
 				haveScore += 100;
 			}
 		}
 		
-		if (other.CompareTag("CollectArea") && haveDataFlg == true)
+		if (other.CompareTag("CollectArea") && haveDataFlg)
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
