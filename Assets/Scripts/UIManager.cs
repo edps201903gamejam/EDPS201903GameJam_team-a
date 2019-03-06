@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 	public UnityEngine.UI.Text ScoreTextA;
 	public UnityEngine.UI.Text ScoreTextB;
 	public UnityEngine.UI.Text HaveScoreText;
+	public GameObject HaveScoreGuage;
 
 	[SerializeField]
 	private Player player;
@@ -29,11 +30,13 @@ public class UIManager : MonoBehaviour {
 		ScoreTextB.text = "B：" + ScoreManager.scoreB;
 
 		//所持スコア表示
-		if ( player.HaveDataFlg ) {
+		if (player.HaveDataFlg) {
 			HaveScoreText.text = player.HaveScore.ToString();
+			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(player.HaveScore * 2, 70);
 		}
 		else {
 			HaveScoreText.text = "";
+			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 70);
 		}
 	}
 }
