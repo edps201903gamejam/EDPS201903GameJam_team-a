@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
 
-	public int scoreA = 0;
-	public int scoreB = 0;
+	public static int scoreA = 0;
+	public static int scoreB = 0;
 
 	[SerializeField]
 	Player player;
