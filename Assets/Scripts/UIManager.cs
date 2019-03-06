@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour {
 	public UnityEngine.UI.Text ScoreTextA;
 	public UnityEngine.UI.Text ScoreTextB;
 
+	[SerializeField]
+	private Player player;
+
 	// Update is called once per frame
 	void Update(){
 		//ミニマップのドット移動

@@ -8,16 +8,25 @@ public class Player : MonoBehaviour
 {
 	public bool HaveDataFlg
 	{
-		get { return haveDataFlg;}
-		set { value = this.haveDataFlg; }
+		get { return this.haveDataFlg;}
+		set { this.haveDataFlg = value; }
 	}
-	
+
+	public int HaveScore
+	{
+		get { return this.haveScore; }
+		set { this.haveScore = value; }
+	}
+
+	private bool haveDataFlg = false;
+
 	[SerializeField]
 	private float speed = 10;
 	private Rigidbody rb;
 	private float moveX;
 	private float moveZ;
-	private bool haveDataFlg = false;
+	private int haveScore = 0;
+
 
 	private void Start()
 	{
@@ -34,7 +43,6 @@ public class Player : MonoBehaviour
 		{
 			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
-		Debug.Log(HaveDataFlg);
 	}
 
 	private void FixedUpdate()
@@ -51,6 +59,7 @@ public class Player : MonoBehaviour
 			{
 				haveDataFlg = true;
 				Debug.Log("データを入手しました！");
+				haveScore += 100;
 			}
 		}
 		

@@ -7,8 +7,15 @@ public class ScoreManager : MonoBehaviour {
 	public int scoreA = 0;
 	public int scoreB = 0;
 
+	[SerializeField]
+	Player player;
+
 	private void Update(){
-		scoreA += Random.Range(0, 3);
-		scoreB += Random.Range(0, 10);
+		if(player.HaveScore != 0 && !player.HaveDataFlg)
+		{
+			scoreA += player.HaveScore;
+			scoreB += player.HaveScore;
+			player.HaveScore = 0;
+		}
 	}
 }
