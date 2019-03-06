@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,6 +9,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float speed = 10;
 	private Rigidbody rb;
+	private float moveX;
+	private float moveZ;
+	private bool haveDataFlg = false;
 
 	private void Start()
 	{
@@ -16,33 +20,38 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		// プレイヤーの移動
-		if (Input.GetKey(KeyCode.UpArrow))
+		moveX = Input.GetAxis ("Horizontal") * speed;
+		moveZ = Input.GetAxis ("Vertical") * speed;
+		Vector3 direction = new Vector3(moveX / speed , 0, moveZ / speed);
+		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
+		    Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0)
 		{
-			rb.velocity = new Vector3(0, 0, speed);
+			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
-		
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			rb.velocity = new Vector3(-speed, 0, 0);
-		}
-		
-		if (Input.GetKey(KeyCode.DownArrow))
-		{
-			rb.velocity = new Vector3(0, 0, -speed);
-		}
-		
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			rb.velocity = new Vector3(speed, 0, 0);
-		}
+	}
 
-		if (Input.GetKeyUp(KeyCode.UpArrow) ||
-		    Input.GetKeyUp(KeyCode.LeftArrow) ||
-		    Input.GetKeyUp(KeyCode.DownArrow) ||
-		    Input.GetKeyUp(KeyCode.RightArrow))
+	private void FixedUpdate()
+	{
+		rb.velocity = new Vector3(moveX, 0, moveZ);
+	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		// 端末からのデータの取得と端末へのデータの受け渡し
+		if (other.CompareTag("GetArea") && haveDataFlg == false)
 		{
-			rb.velocity = new Vector3(0, 0, 0);
+			if (Input.GetKeyDown(KeyCode.Z))
+			{
+				haveDataFlg = true;
+			}
+		}
+		
+		if (other.CompareTag("CollectArea") && haveDataFlg == true)
+		{
+			if (Input.GetKeyDown(KeyCode.Z))
+			{
+				haveDataFlg = false;
+			}
 		}
 	}
 }
