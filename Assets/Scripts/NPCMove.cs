@@ -26,6 +26,8 @@ public class NPCMove : MonoBehaviour
 	public float speed = 0.1f;
 	
 	public float chaseRemaining = 3.0f;
+
+	public bool isMapB = false;
 	
 	public bool IsGameOver = false;
 	
@@ -33,7 +35,7 @@ public class NPCMove : MonoBehaviour
 	{
 		
 		agent = GetComponent<NavMeshAgent>();
-		agent.autoBraking = false;
+//		agent.autoBraking = false;
 		GotoNextPoint();
 	}
 
@@ -70,6 +72,8 @@ public class NPCMove : MonoBehaviour
 
 		Debug.Log("巡回中……");
 		agent.destination = points[destPoint].position;
+		if(isMapB && destPoint + 1 == points.Length)
+			Array.Reverse(points);
 		destPoint = (destPoint + 1) % points.Length;
 	}
 
