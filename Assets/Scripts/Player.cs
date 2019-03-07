@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 	//[SerializeField]
 	//private UIManager uIManager;
 
+	public UnityEngine.UI.Text MessageText;
+	float messageAlpha = 0;
+
 	[SerializeField]
 	private float moveSpeed = 10;
 	private Rigidbody rb;
@@ -46,6 +49,11 @@ public class Player : MonoBehaviour
 		{
 			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
+
+		if( messageAlpha > 0 ) {
+			messageAlpha -= Time.deltaTime;
+			MessageText.color = new Color(0, 0, 0, messageAlpha);
+		}
 	}
 
 	private void FixedUpdate()
@@ -68,7 +76,9 @@ public class Player : MonoBehaviour
 				haveDataFlg = true;
 				//uIManager.Password = other.GetComponent<Terminal>().Password;
 				Debug.Log("データを入手しました！");
-				haveScore += 100;
+				MessageText.text = "データを入手しました！";
+				messageAlpha = 1;
+				haveScore += Random.Range(100,1000);
 			}
 		}
 		
@@ -78,6 +88,8 @@ public class Player : MonoBehaviour
 			{
 				haveDataFlg = false;
 				Debug.Log("データを渡しました！");
+				MessageText.text = "データを渡しました！";
+				messageAlpha = 1;
 			}
 		}
 	}

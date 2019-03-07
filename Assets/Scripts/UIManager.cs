@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour {
 		//所持スコア表示
 		if (player.HaveDataFlg) {
 			HaveScoreText.text = player.HaveScore.ToString();
-			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(player.HaveScore * 2, 70);
+			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(player.HaveScore * 2, 32);
 			HaveScoreImage.gameObject.SetActive(true);
 			HaveMB.gameObject.SetActive(true);
 		}
