@@ -33,10 +33,12 @@ public class Player : MonoBehaviour
 	private UIManager uIManager;
 	public UnityEngine.UI.Text MessageText;
 	float messageAlpha = 0;
+	private Animation anim;
 
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		anim = GetComponent<Animation>();
 	}
 
 	private void Update()
@@ -107,11 +109,22 @@ public class Player : MonoBehaviour
 	}
 
 	private void MoveSet() {
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		{
+			anim["Walk"].speed = 1.5f;
+			this.anim.Play();
+		}
+		else
+		{
+			this.anim["Walk"].speed = 0;
+		}
+		
 		moveX = Input.GetAxis("Horizontal") * moveSpeed;
 		moveZ = Input.GetAxis("Vertical") * moveSpeed;
 		Vector3 direction = new Vector3(moveX / moveSpeed, 0, moveZ / moveSpeed);
 		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
-			Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0) {
+			Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0)
+		{
 			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
 	}
