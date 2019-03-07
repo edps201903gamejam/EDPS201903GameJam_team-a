@@ -6,10 +6,14 @@ public class ResultManager : MonoBehaviour {
 
 	[SerializeField]
 	private UnityEngine.UI.Text ResultScore;
+	[SerializeField]
+	private UnityEngine.UI.Text ResultMB;
+
 	// Use this for initialization
 	void Start () {
-		int totalScore = ScoreManager.scoreA + ScoreManager.scoreB;
-		Debug.Log( totalScore );
-		ResultScore.text = totalScore.ToString();
+		int totalScore = ScoreManager.score;
+		int totalDatasize = ScoreManager.datasize;
+		ResultScore.text = "$" + totalScore.ToString();
+		ResultMB.text = totalDatasize.ToString() + "MB";
 	}
 }
