@@ -40,12 +40,6 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private GameObject[] stageMap = new GameObject[2];
 
-
-	//マップのGameObjectを登録するところ
-	[SerializeField]
-	private GameObject[] stageMap = new GameObject[2];
-
-
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
