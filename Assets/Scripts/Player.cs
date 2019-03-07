@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
 				Debug.Log(terminalData.Password);
 				uIManager.TerminalPassword = terminalData.Password;
 				uIManager.TerminalScore = terminalData.TerminalScore;
-
 			}
 		}
 
@@ -113,6 +112,7 @@ public class Player : MonoBehaviour
 				Debug.Log(terminalData.Password);
 				uIManager.TerminalPassword = terminalData.Password;
 				uIManager.TerminalScore = terminalData.TerminalScore;
+				uIManager.AccessedTerminal = terminalData;
 			}
 		}
 
