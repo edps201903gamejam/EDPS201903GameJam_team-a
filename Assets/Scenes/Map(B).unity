@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &44352504
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1738727881}
+    m_Modifications:
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10.614512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 9.995443
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734168369008746, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 269ef165747e347bb93f0adf47a01ae0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &132143298
 Prefab:
   m_ObjectHideFlags: 0
@@ -298,3 +340,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1738727881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4406934532830330, guid: 93085ea51469d46ea86ea38eef008410,
+    type: 2}
+  m_PrefabInternal: {fileID: 132143298}

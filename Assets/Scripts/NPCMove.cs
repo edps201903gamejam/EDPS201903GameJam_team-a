@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
@@ -19,38 +20,40 @@ public class NPCMove : MonoBehaviour
 	private Vector3 npcPos;
 
 	private float angle = 30.0f;
-	private float distance = 3.0f;
+	private float distance = 10.0f;
 
 	public GameObject player;
 	public float speed = 0.1f;
-
+	
+	public float chaseRemaining = 3.0f;
+	
 	public bool IsGameOver = false;
 	
 	void Start ()
 	{
-		var transform1 = this.transform;
-		eyeDir = transform1.forward;
-		playerPos = player.transform.position;
-		npcPos = transform1.position;
 		
 		agent = GetComponent<NavMeshAgent>();
 		agent.autoBraking = false;
 		GotoNextPoint();
-
 	}
 
 	
 	void Update ()
 	{
+		var transform1 = this.gameObject.transform;
+		eyeDir = transform1.forward;
 		playerPos = player.transform.position;
-		npcPos = transform.position;
+		npcPos = transform1.position;
 		
-//		Debug.Log(Vector3.Angle((npcPos - playerPos).normalized, eyeDir));
-		if (Vector3.Angle((npcPos - playerPos).normalized, eyeDir) <= angle
-		    && Vector3.Distance(npcPos, playerPos) <= distance
+//		Debug.Log(Vector3.Angle((playerPos - npcPos).normalized, eyeDir));
+//		Debug.Log(Vector3.Distance(npcPos, playerPos) <= distance);
+//		Debug.Log(Physics.Linecast(npcPos, playerPos));
+		if (Vector3.Angle((playerPos - npcPos).normalized, eyeDir) <= angle
+		    && Vector3.Distance(playerPos, npcPos) <= distance
 		    && Physics.Linecast(npcPos, playerPos))
 		{
 			ChasePlayer();
+			chaseRemaining = 3.0f;
 		}
 		else if (!agent.pathPending && agent.remainingDistance < 1.0f)
 		{
@@ -64,6 +67,7 @@ public class NPCMove : MonoBehaviour
 	{
 		if (points.Length == 0)
 			return;
+
 		Debug.Log("巡回中……");
 		agent.destination = points[destPoint].position;
 		destPoint = (destPoint + 1) % points.Length;
@@ -71,17 +75,21 @@ public class NPCMove : MonoBehaviour
 
 	void ChasePlayer()
 	{
-		Debug.Log("chase中……");
-		transform.rotation = Quaternion.Slerp(transform.rotation,
-			              Quaternion.LookRotation(playerPos - transform.position), 0.01f);
-		transform.position += transform.forward * speed * 0.1f;
+		while (chaseRemaining >= 0)
+		{
+			chaseRemaining -= Time.deltaTime;
+			Debug.Log("chase中……");
+			transform.rotation = Quaternion.Slerp(transform.rotation,
+			Quaternion.LookRotation(playerPos - transform.position), 0.01f);
+			transform.position += transform.forward * speed * 0.1f;
+		}
 	}
 
 	private void OnCollisionEnter(Collision other)
-	{
-		if (other.gameObject.CompareTag("Player"))
-		{
-			IsGameOver = true;
-		}
+	{	
+			if (other.gameObject.CompareTag("Player"))
+			{
+				IsGameOver = true;
+			}	
 	}
 }

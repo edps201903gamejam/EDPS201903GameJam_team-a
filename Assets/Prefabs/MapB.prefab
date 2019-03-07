@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4098162276063328}
   - component: {fileID: 65774908856666076}
-  - component: {fileID: 114623206269079408}
+  - component: {fileID: 114651498794704660}
   m_Layer: 0
   m_Name: GetArea
   m_TagString: GetArea
@@ -517,7 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4085532926011080}
   - component: {fileID: 65042407409735512}
-  - component: {fileID: 114393116173065316}
+  - component: {fileID: 114638334953031836}
   m_Layer: 0
   m_Name: GetArea
   m_TagString: GetArea
@@ -766,7 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4924748474733458}
   - component: {fileID: 65357673099385740}
-  - component: {fileID: 114249488688127790}
+  - component: {fileID: 114554219161325312}
   m_Layer: 0
   m_Name: GetArea
   m_TagString: GetArea
@@ -4312,7 +4312,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114249488688127790
+--- !u!114 &114554219161325312
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4324,7 +4324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terminalType: 2
---- !u!114 &114393116173065316
+--- !u!114 &114638334953031836
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4336,7 +4336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terminalType: 1
---- !u!114 &114623206269079408
+--- !u!114 &114651498794704660
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
