@@ -31,16 +31,26 @@ public class UIManager : MonoBehaviour {
 	public UnityEngine.UI.Image HaveScoreImage;
 	public UnityEngine.UI.Text HaveMB;
 	public GameObject HaveScoreGuage;
+	//メッセージ
 	public UnityEngine.UI.Text MessageText;
 	float messageAlpha = 0;
 
+	//マップのGameObjectを登録するところ
 	[SerializeField]
 	private GameObject[] stageMap = new GameObject[2];
 
+	//今どっちのマップに居るか
 	private int currentMapFlg = 0;
 	private int haveDataSide;
 
 	public UnityEngine.UI.Text RateText;
+
+	//寿司打UI
+	public GameObject PasswordUI;
+	public UnityEngine.UI.Text PasswordText;
+	public UnityEngine.UI.Text EnteredPasswordText;
+	private string enteringPassword = "";
+	private int numofTypingPassword = 0;
 
 	[SerializeField]
 	private Player player;
@@ -68,7 +78,7 @@ public class UIManager : MonoBehaviour {
 		//所持スコア表示
 		if (player.HaveDataFlg) {
 			HaveScoreText.text = player.HaveScore.ToString();
-			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(player.HaveScore * 2, 32);
+			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(player.HaveScore , 32);
 			HaveScoreImage.gameObject.SetActive(true);
 			HaveMB.gameObject.SetActive(true);
 		}
@@ -79,8 +89,8 @@ public class UIManager : MonoBehaviour {
 			HaveMB.gameObject.SetActive(false);
 		}
 
-		//Rキーでリザに飛ぶ(デバッグ用)
-		if (Input.GetKeyDown(KeyCode.R)) {
+		//Enterキーでリザに飛ぶ(デバッグ用)
+		if (Input.GetKeyDown(KeyCode.Return)) {
 			SceneManager.LoadScene(sceneName: "ResultScene");
 		}
 		//Mキーでステージ移動(デバッグ用)
@@ -100,6 +110,7 @@ public class UIManager : MonoBehaviour {
 		if (terminalPassword != "") {
 			CompareTerminalPass(terminalPassword);
 		}
+		else enteringPassword = "";
 	}
 
 	private void CompareTerminalPass(string _terminalPass) {
@@ -107,11 +118,18 @@ public class UIManager : MonoBehaviour {
 
 		// キー入力
 		if (Input.anyKeyDown) {
+			if (numofTypingPassword == 0) {
+				enteringPassword = "";
+				PasswordUI.SetActive(true);
+				PasswordText.text = _terminalPass;
+				EnteredPasswordText.text = enteringPassword;
+			}
 			// 入力が成功している場合
 			if (Input.GetKeyDown(terminalPassword[0].ToString())) {
-				Debug.Log("OK!");
+				numofTypingPassword++;
+				enteringPassword += terminalPassword[0];
+				EnteredPasswordText.text = enteringPassword;
 				this.terminalPassword = this.terminalPassword.Remove(0, 1);
-				Debug.Log(terminalPassword);
 				strLength--;
 				if (strLength == 0) {
 					player.HaveDataFlg = true;
@@ -122,6 +140,9 @@ public class UIManager : MonoBehaviour {
 					else if(currentMapFlg == 1) {
 						haveDataSide = 1;
 					}
+					PasswordUI.SetActive(false);
+					enteringPassword = "";
+					numofTypingPassword = 0;
 					MessageText.text = ("データを入手しました！");
 					messageAlpha = 1;
 				}
@@ -133,12 +154,16 @@ public class UIManager : MonoBehaviour {
 					Input.GetKeyDown(KeyCode.DownArrow) ||
 					Input.GetKeyDown(KeyCode.RightArrow)) {
 				terminalPassword = "";
+				numofTypingPassword = 0;
+				enteringPassword = "";
+				PasswordUI.SetActive(false);
 				player.HaveDataFlg = false;
 			}
 
 			// 入力が失敗している場合
-			else if (!Input.GetKeyDown(terminalPassword[0].ToString())) {
-				Debug.Log("NO!");
+			else if (!Input.GetKeyDown(terminalPassword[0].ToString()) && numofTypingPassword!=0) {
+				MessageText.text = ("違います");
+				messageAlpha = 1;
 			}
 		}
 	}

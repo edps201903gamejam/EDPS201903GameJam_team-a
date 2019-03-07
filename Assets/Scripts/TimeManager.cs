@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour {
 
+	[SerializeField]
 	private float timelimit = 60;
 
 	private float left = 0f;
