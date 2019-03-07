@@ -16,7 +16,7 @@ public class Terminal : MonoBehaviour
 		get { return this.terminalScore; }
 		set { this.terminalScore = value; }
 	}
-	
+
 	private string password;
 	
 	private int terminalScore = 0;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour {
 
@@ -18,12 +19,18 @@ public class UIManager : MonoBehaviour {
 		set { this.terminalScore = value; }
 	}
 
+	public Terminal AccessedTerminal {
+		get { return this.accessedTerminal; }
+		set { this.accessedTerminal = value; }
+	}
+
 	public int CurrentMapFlg { get { return this.currentMapFlg; } set { this.currentMapFlg = value; } }
 
 	public int HaveDataSide { get { return this.haveDataSide; } set { this.haveDataSide = value; } }
 
 	private string terminalPassword = "";
 	private int terminalScore = 0;
+	private Terminal accessedTerminal;
 
 	public ScoreManager ScoreManager;
 	public UnityEngine.UI.Text ScoreText;
@@ -144,6 +151,7 @@ public class UIManager : MonoBehaviour {
 					enteringPassword = "";
 					numofTypingPassword = 0;
 					MessageText.text = ("データを入手しました！");
+					accessedTerminal.Password = Guid.NewGuid().ToString("N").Substring(0, accessedTerminal.Password.Length);
 					messageAlpha = 1;
 				}
 			}
