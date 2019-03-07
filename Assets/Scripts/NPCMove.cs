@@ -28,6 +28,8 @@ public class NPCMove : MonoBehaviour
 	public float chaseRemaining = 3.0f;
 	
 	public bool IsGameOver = false;
+
+	private Animation anim;
 	
 	void Start ()
 	{
@@ -35,11 +37,13 @@ public class NPCMove : MonoBehaviour
 		agent = GetComponent<NavMeshAgent>();
 		agent.autoBraking = false;
 		GotoNextPoint();
+		anim = GetComponent<Animation>();
 	}
 
 	
 	void Update ()
 	{
+		this.anim.Play();
 		var transform1 = this.gameObject.transform;
 		eyeDir = transform1.forward;
 		playerPos = player.transform.position;
