@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 	private float moveZ;
 	private string remainingString;
 	private string enteredString;
+	[SerializeField]
+	private UIManager uIManager;
 
 	private void Start()
 	{
@@ -36,33 +38,32 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		moveX = Input.GetAxis ("Horizontal") * moveSpeed;
-		moveZ = Input.GetAxis ("Vertical") * moveSpeed;
-		Vector3 direction = new Vector3(moveX / moveSpeed , 0, moveZ / moveSpeed);
-		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
-		    Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0)
+		if (uIManager.TerminalPassword == "")
 		{
-			this.transform.localRotation = Quaternion.LookRotation(direction);
+			MoveSet();
 		}
 	}
 
 	private void FixedUpdate()
 	{
 		// プレイヤーの移動
-		rb.velocity = new Vector3(moveX, 0, moveZ);
+		if (uIManager.TerminalPassword == "")
+		{
+			rb.velocity = new Vector3(moveX, 0, moveZ);
+		}
 	}
 
 	private void OnTriggerStay(Collider other)
 	{
 		// 端末からのデータの取得と端末へのデータの受け渡し
-		if (other.CompareTag("GetArea") && !haveDataFlg)
+		if (other.CompareTag("GetArea") && !haveDataFlg　&& haveScore == 0)
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
-				haveDataFlg = true;
-				Debug.Log(other.GetComponent<Terminal>().Password);
-				Debug.Log("データを入手しました！");
-				haveScore += 100;
+				Terminal terminalData = other.GetComponent<Terminal>();
+				Debug.Log(terminalData.Password);
+				uIManager.TerminalPassword = terminalData.Password;
+				uIManager.TerminalScore = terminalData.TerminalScore;
 			}
 		}
 		
@@ -73,6 +74,18 @@ public class Player : MonoBehaviour
 				haveDataFlg = false;
 				Debug.Log("データを渡しました！");
 			}
+		}
+	}
+
+	private void MoveSet()
+	{
+		moveX = Input.GetAxis ("Horizontal") * moveSpeed;
+		moveZ = Input.GetAxis ("Vertical") * moveSpeed;
+		Vector3 direction = new Vector3(moveX / moveSpeed , 0, moveZ / moveSpeed);
+		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
+		    Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0)
+		{
+			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
 	}
 }

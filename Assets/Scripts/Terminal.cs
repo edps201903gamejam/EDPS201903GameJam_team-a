@@ -8,7 +8,13 @@ public class Terminal : MonoBehaviour
 	public string Password
 	{
 		get { return this.password; }
-		set { value = this.password; }
+		set { this.password = value; }
+	}
+
+	public int TerminalScore
+	{
+		get { return this.terminalScore; }
+		set { this.terminalScore = value; }
 	}
 	
 	private string password;
@@ -30,17 +36,17 @@ public class Terminal : MonoBehaviour
 		switch (terminalType)
 		{
 				case TerminalType.common:
-					terminalScore = 500;
+					terminalScore = 50000;
 					password = Guid.NewGuid ().ToString ("N").Substring(0, 3);
 					break;
 				
 				case TerminalType.uncommon:
-					terminalScore = 750;
+					terminalScore = 90000;
 					password = Guid.NewGuid ().ToString ("N").Substring(0, 5);
 					break;
 					
 				case TerminalType.rare:
-					terminalScore = 1000;
+					terminalScore = 200000;
 					password = Guid.NewGuid ().ToString ("N").Substring(0, 8);
 					break;
 		}
