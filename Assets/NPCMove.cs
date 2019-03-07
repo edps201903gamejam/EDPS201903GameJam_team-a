@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
@@ -22,6 +23,8 @@ public class NPCMove : MonoBehaviour
 
 	public GameObject player;
 	public float speed = 0.1f;
+
+	public bool IsGameOver = false;
 	
 	void Start ()
 	{
@@ -49,10 +52,11 @@ public class NPCMove : MonoBehaviour
 		{
 			ChasePlayer();
 		}
-		else if(!agent.pathPending && agent.remainingDistance < 1.0f)
+		else if (!agent.pathPending && agent.remainingDistance < 1.0f)
 		{
 			GotoNextPoint();
 		}
+		
 			
 	}
 	
@@ -71,5 +75,13 @@ public class NPCMove : MonoBehaviour
 		transform.rotation = Quaternion.Slerp(transform.rotation,
 			              Quaternion.LookRotation(playerPos - transform.position), 0.01f);
 		transform.position += transform.forward * speed * 0.1f;
+	}
+
+	private void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.CompareTag("Player"))
+		{
+			IsGameOver = true;
+		}
 	}
 }
