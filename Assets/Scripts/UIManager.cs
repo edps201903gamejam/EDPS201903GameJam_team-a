@@ -6,13 +6,18 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour {
 
 	public GameObject MinimapDot;
-	public float moveSpeed = 10;
+	public float dotMoveSpeed = 2;
+
+	public string Password { get { return this.password; } set { this.password = value; } }
+
+	private string password;
 
 	public ScoreManager ScoreManager;
 	public UnityEngine.UI.Text ScoreTextA;
 	public UnityEngine.UI.Text ScoreTextB;
 	public UnityEngine.UI.Text HaveScoreText;
 	public GameObject HaveScoreGuage;
+
 
 	[SerializeField]
 	private Player player;
@@ -22,8 +27,8 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update(){
 		//ミニマップのドット移動
-		float mapX = (Player.transform.position.x * moveSpeed) + 85;
-		float mapZ = (Player.transform.position.z * moveSpeed) + 70;
+		float mapX = (Player.transform.position.x * dotMoveSpeed) + 95;
+		float mapZ = (Player.transform.position.z * dotMoveSpeed) + 75;
 		MinimapDot.transform.position = new Vector3(mapX, mapZ, 0);
 
 		//スコア表示
@@ -44,5 +49,7 @@ public class UIManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.R)) {
 			SceneManager.LoadScene( sceneName:"ResultScene" );
 		}
+
+		Debug.Log(this.Password);
 	}
 }

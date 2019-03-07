@@ -864,6 +864,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224214328502186160, guid: 0206382216b25400cb1dfec24f0eff5e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -289.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224214328502186160, guid: 0206382216b25400cb1dfec24f0eff5e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 1066.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224214328502186160, guid: 0206382216b25400cb1dfec24f0eff5e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1079
+      objectReference: {fileID: 0}
+    - target: {fileID: 224214328502186160, guid: 0206382216b25400cb1dfec24f0eff5e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -420.61
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0206382216b25400cb1dfec24f0eff5e, type: 2}
   m_IsPrefabAsset: 0
@@ -1147,6 +1167,11 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1314080459}
+    - target: {fileID: 114673296402550792, guid: bbacaa0f8388f4a3f85a717375da1e89,
+        type: 2}
+      propertyPath: dotMoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbacaa0f8388f4a3f85a717375da1e89, type: 2}
   m_IsPrefabAsset: 0
@@ -1651,9 +1676,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: efc5c6c2db0124113a9084d591ff81ea, type: 3}
     m_FontSize: 72
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100

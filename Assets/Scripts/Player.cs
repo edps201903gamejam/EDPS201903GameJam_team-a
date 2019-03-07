@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
 	private bool haveDataFlg = false;
 	private int haveScore = 0;
+	//[SerializeField]
+	//private UIManager uIManager;
 
 	[SerializeField]
 	private float moveSpeed = 10;
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				haveDataFlg = true;
-				//Debug.Log(other.GetComponent<Terminal>().Password);
+				//uIManager.Password = other.GetComponent<Terminal>().Password;
 				Debug.Log("データを入手しました！");
 				haveScore += 100;
 			}

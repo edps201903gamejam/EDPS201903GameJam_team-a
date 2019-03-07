@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
 
-	public static int scoreA = 0;
-	public static int scoreB = 0;
+	public static int score = 0;
 
 	[SerializeField]
 	Player player;
@@ -13,8 +12,7 @@ public class ScoreManager : MonoBehaviour {
 	private void Update(){
 		if(player.HaveScore != 0 && !player.HaveDataFlg)
 		{
-			scoreA += player.HaveScore;
-			scoreB += player.HaveScore;
+			score += player.HaveScore;
 			player.HaveScore = 0;
 		}
 	}

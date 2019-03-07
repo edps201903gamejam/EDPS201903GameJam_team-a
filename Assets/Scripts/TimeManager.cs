@@ -21,5 +21,8 @@ public class TimeManager : MonoBehaviour {
 		if ( remain <= 0 ) {
 			SceneManager.LoadScene(sceneName: "ResultScene");
 		}
+		else if ( remain < 30 ) {
+			TimeText.color = new Color(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
+		}
 	}
 }
