@@ -31,9 +31,15 @@ public class Player : MonoBehaviour
 	private string enteredString;
 	[SerializeField]
 	private UIManager uIManager;
+	//メッセージ
 	public UnityEngine.UI.Text MessageText;
 	float messageAlpha = 0;
 	private Animation anim;
+
+	//マップのGameObjectを登録するところ
+	[SerializeField]
+	private GameObject[] stageMap = new GameObject[2];
+
 
 	private void Start()
 	{
@@ -67,8 +73,29 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerStay(Collider other)
-	{
+	//柱に入ったらマップ移動
+	private void OnTriggerEnter(Collider other) {
+		if( other.CompareTag("MoveArea")) {
+			if (uIManager.CurrentMapFlg == 0) {
+				stageMap[0].SetActive(false);
+				stageMap[1].SetActive(true);
+				uIManager.CurrentMapFlg = 1;
+				transform.position = new Vector3(-39, -16, -23);
+				MessageText.text = "マップBに移動";
+				messageAlpha = 1;
+			}
+			else if (uIManager.CurrentMapFlg == 1) {
+				stageMap[0].SetActive(true);
+				stageMap[1].SetActive(false);
+				uIManager.CurrentMapFlg = 0;
+				transform.position = new Vector3(44, -16, -24);
+				MessageText.text = "マップAに移動";
+				messageAlpha = 1;
+			}
+		}
+	}
+
+	private void OnTriggerStay(Collider other) {
 		// 端末からのデータの取得と端末へのデータの受け渡し
 		if (other.CompareTag("GetArea") && !haveDataFlg && haveScore == 0)
 		{
@@ -78,7 +105,6 @@ public class Player : MonoBehaviour
 				Debug.Log(terminalData.Password);
 				uIManager.TerminalPassword = terminalData.Password;
 				uIManager.TerminalScore = terminalData.TerminalScore;
-
 
 			}
 		}

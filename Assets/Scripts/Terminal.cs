@@ -36,17 +36,17 @@ public class Terminal : MonoBehaviour
 		switch (terminalType)
 		{
 				case TerminalType.common:
-					terminalScore = 50000;
+					terminalScore = 512;
 					password = Guid.NewGuid ().ToString ("N").Substring(0, 3);
 					break;
 				
 				case TerminalType.uncommon:
-					terminalScore = 90000;
+					terminalScore = 1024;
 					password = Guid.NewGuid ().ToString ("N").Substring(0, 5);
 					break;
 					
 				case TerminalType.rare:
-					terminalScore = 200000;
+					terminalScore = 2048;
 					password = Guid.NewGuid ().ToString ("N").Substring(0, 8);
 					break;
 		}
