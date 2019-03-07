@@ -132,7 +132,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   player: {fileID: 0}
-  speed: 0.1
+  speed: 0.2
+  IsGameOver: 0
 --- !u!195 &195008845937768708
 NavMeshAgent:
   m_ObjectHideFlags: 1
