@@ -21,13 +21,6 @@ public class Player : MonoBehaviour
 
 	private bool haveDataFlg = false;
 	private int haveScore = 0;
-	//どちらの国の情報を持ってるか
-	private string haveDataside = "";
-	//[SerializeField]
-	//private UIManager uIManager;
-
-	public UnityEngine.UI.Text MessageText;
-	float messageAlpha = 0;
 
 	[SerializeField]
 	private float moveSpeed = 10;
@@ -36,6 +29,10 @@ public class Player : MonoBehaviour
 	private float moveZ;
 	private string remainingString;
 	private string enteredString;
+	[SerializeField]
+	private UIManager uIManager;
+	public UnityEngine.UI.Text MessageText;
+	float messageAlpha = 0;
 
 	private void Start()
 	{
@@ -44,25 +41,24 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		moveX = Input.GetAxis ("Horizontal") * moveSpeed;
-		moveZ = Input.GetAxis ("Vertical") * moveSpeed;
-		Vector3 direction = new Vector3(moveX / moveSpeed , 0, moveZ / moveSpeed);
-		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
-		    Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0)
-		{
-			this.transform.localRotation = Quaternion.LookRotation(direction);
+		if (uIManager.TerminalPassword == "") {
+			MoveSet();
 		}
 
-		if( messageAlpha > 0 ) {
+		if (messageAlpha > 0) {
 			messageAlpha -= Time.deltaTime;
 			MessageText.color = new Color(0, 0, 0, messageAlpha);
 		}
+
+
 	}
 
 	private void FixedUpdate()
 	{
 		// プレイヤーの移動
-		rb.velocity = new Vector3(moveX, 0, moveZ);
+		if (uIManager.TerminalPassword == "") {
+			rb.velocity = new Vector3(moveX, 0, moveZ);
+		}
 		//Dキーで加速(デバッグ用)
 		if (Input.GetKeyDown(KeyCode.D)) {
 			moveSpeed = 20;
@@ -72,36 +68,51 @@ public class Player : MonoBehaviour
 	private void OnTriggerStay(Collider other)
 	{
 		// 端末からのデータの取得と端末へのデータの受け渡し
-		if (other.CompareTag("GetArea") && !haveDataFlg)
+		if (other.CompareTag("GetArea") && !haveDataFlg && haveScore == 0)
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
-				haveDataFlg = true;
-				if (SceneManager.GetActiveScene().name == "StageA_UI") haveDataside = "A";
-				else haveDataside = "B";
-				//uIManager.Password = other.GetComponent<Terminal>().Password;
-				Debug.Log("データを入手しました！");
-				MessageText.text = haveDataside + "のデータを入手しました！";
-				messageAlpha = 1;
-				haveScore += Random.Range(100,1000);
+				Terminal terminalData = other.GetComponent<Terminal>();
+				Debug.Log(terminalData.Password);
+				uIManager.TerminalPassword = terminalData.Password;
+				uIManager.TerminalScore = terminalData.TerminalScore;
+
+
 			}
 		}
-		
+
+		if (other.CompareTag("GetArea") && !haveDataFlg && haveScore == 0) {
+			if (Input.GetKeyDown(KeyCode.Z)) {
+				Terminal terminalData = other.GetComponent<Terminal>();
+				Debug.Log(terminalData.Password);
+				uIManager.TerminalPassword = terminalData.Password;
+				uIManager.TerminalScore = terminalData.TerminalScore;
+			}
+		}
+
 		if (other.CompareTag("CollectArea") && haveDataFlg)
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
-				if ((SceneManager.GetActiveScene().name == "StageA_UI" && haveDataside == "A") || (SceneManager.GetActiveScene().name == "StageB_UI" && haveDataside == "B")) {
+				if (uIManager.HaveDataSide == uIManager.CurrentMapFlg) {
 					MessageText.text = "それはむり";
 					messageAlpha = 1; 
 					return;
 				}
 				haveDataFlg = false;
-				haveDataside = "";
-				Debug.Log("データを渡しました！");
 				MessageText.text = "データを渡しました！";
 				messageAlpha = 1;
 			}
+		}
+	}
+
+	private void MoveSet() {
+		moveX = Input.GetAxis("Horizontal") * moveSpeed;
+		moveZ = Input.GetAxis("Vertical") * moveSpeed;
+		Vector3 direction = new Vector3(moveX / moveSpeed, 0, moveZ / moveSpeed);
+		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ||
+			Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0) {
+			this.transform.localRotation = Quaternion.LookRotation(direction);
 		}
 	}
 }
