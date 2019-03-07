@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour {
 	//渡したデータ量の合計
 	public static int datasize = 0;
 	//交換レート
-	public static float exchangeRate = 723.52f;
+	public static float exchangeRate = 765f;
 
 	[SerializeField]
 	Player player;

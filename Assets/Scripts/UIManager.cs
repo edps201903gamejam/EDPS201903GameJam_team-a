@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
 	public UnityEngine.UI.Text HaveMB;
 	public GameObject HaveScoreGuage;
 
+	public UnityEngine.UI.Text RateText;
 
 	[SerializeField]
 	private Player player;
@@ -34,6 +35,9 @@ public class UIManager : MonoBehaviour {
 
 		//スコア表示
 		ScoreText.text = ScoreManager.score.ToString();
+
+		//レート表示
+		RateText.text = "Rate:" + ScoreManager.exchangeRate.ToString();
 
 		//所持スコア表示
 		if (player.HaveDataFlg) {
@@ -51,7 +55,12 @@ public class UIManager : MonoBehaviour {
 
 		//Rキーでリザに飛ぶ(デバッグ用)
 		if (Input.GetKeyDown(KeyCode.R)) {
-			SceneManager.LoadScene( sceneName:"ResultScene" );
+			SceneManager.LoadScene(sceneName: "ResultScene");
+		}
+		//Sキーでステージ移動(デバッグ用)
+		else if (Input.GetKeyDown(KeyCode.M)) {
+			if (SceneManager.GetActiveScene().name == "StageA_UI") SceneManager.LoadScene(sceneName: "StageB_UI");
+			else if (SceneManager.GetActiveScene().name == "StageB_UI") SceneManager.LoadScene(sceneName: "StageA_UI");
 		}
 
 		Debug.Log(this.Password);

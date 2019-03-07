@@ -52,6 +52,10 @@ public class Player : MonoBehaviour
 	{
 		// プレイヤーの移動
 		rb.velocity = new Vector3(moveX, 0, moveZ);
+		//Dキーで加速(デバッグ用)
+		if (Input.GetKeyDown(KeyCode.D)) {
+			moveSpeed *= 2;
+		}
 	}
 
 	private void OnTriggerStay(Collider other)
