@@ -13,9 +13,10 @@ public class UIManager : MonoBehaviour {
 	private string password;
 
 	public ScoreManager ScoreManager;
-	public UnityEngine.UI.Text ScoreTextA;
-	public UnityEngine.UI.Text ScoreTextB;
+	public UnityEngine.UI.Text ScoreText;
 	public UnityEngine.UI.Text HaveScoreText;
+	public UnityEngine.UI.Image HaveScoreImage;
+	public UnityEngine.UI.Text HaveMB;
 	public GameObject HaveScoreGuage;
 
 
@@ -32,17 +33,20 @@ public class UIManager : MonoBehaviour {
 		MinimapDot.transform.position = new Vector3(mapX, mapZ, 0);
 
 		//スコア表示
-		ScoreTextA.text = ScoreManager.scoreA.ToString();
-		ScoreTextB.text = ScoreManager.scoreB.ToString();
+		ScoreText.text = ScoreManager.score.ToString();
 
 		//所持スコア表示
 		if (player.HaveDataFlg) {
 			HaveScoreText.text = player.HaveScore.ToString();
 			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(player.HaveScore * 2, 70);
+			HaveScoreImage.gameObject.SetActive(true);
+			HaveMB.gameObject.SetActive(true);
 		}
 		else {
 			HaveScoreText.text = "";
 			HaveScoreGuage.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 70);
+			HaveScoreImage.gameObject.SetActive(false);
+			HaveMB.gameObject.SetActive(false);
 		}
 
 		//Rキーでリザに飛ぶ(デバッグ用)

@@ -18,10 +18,10 @@ public class TimeManager : MonoBehaviour {
 		remain = timelimit - left;
 		TimeText.text = Mathf.Floor(remain).ToString();
 
-		if ( remain <= 0 ) {
+		if ( remain <= 0.2f ) {
 			SceneManager.LoadScene(sceneName: "ResultScene");
 		}
-		else if ( remain < 30 ) {
+		else if ( Mathf.Floor(remain) == 30 ) {
 			TimeText.color = new Color(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
 		}
 	}
