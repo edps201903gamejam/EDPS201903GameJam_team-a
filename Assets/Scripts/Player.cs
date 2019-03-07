@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animation>();
+		anim["Walk"].speed = 1.5f;
 	}
 
 	private void Update()
@@ -105,15 +106,6 @@ public class Player : MonoBehaviour
 				Debug.Log(terminalData.Password);
 				uIManager.TerminalPassword = terminalData.Password;
 				uIManager.TerminalScore = terminalData.TerminalScore;
-			}
-		}
-
-		if (other.CompareTag("GetArea") && !haveDataFlg && haveScore == 0) {
-			if (Input.GetKeyDown(KeyCode.Z)) {
-				Terminal terminalData = other.GetComponent<Terminal>();
-				Debug.Log(terminalData.Password);
-				uIManager.TerminalPassword = terminalData.Password;
-				uIManager.TerminalScore = terminalData.TerminalScore;
 				uIManager.AccessedTerminal = terminalData;
 			}
 		}
@@ -137,12 +129,11 @@ public class Player : MonoBehaviour
 	private void MoveSet() {
 		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{
-			anim["Walk"].speed = 1.5f;
 			this.anim.Play();
 		}
 		else
 		{
-			this.anim["Walk"].speed = 0;
+			this.anim.Stop();
 		}
 		
 		moveX = Input.GetAxis("Horizontal") * moveSpeed;
