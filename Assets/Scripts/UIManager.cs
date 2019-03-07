@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour {
 	public UnityEngine.UI.Text HaveMB;
 	public GameObject HaveScoreGuage;
 
+	[SerializeField]
+	private GameObject[] stageMap = new GameObject[2];
+
+	private int currentMapFlg = 0;
+
 	public UnityEngine.UI.Text RateText;
 
 	[SerializeField]
@@ -57,10 +62,18 @@ public class UIManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.R)) {
 			SceneManager.LoadScene(sceneName: "ResultScene");
 		}
-		//Sキーでステージ移動(デバッグ用)
+		//Mキーでステージ移動(デバッグ用)
 		else if (Input.GetKeyDown(KeyCode.M)) {
-			if (SceneManager.GetActiveScene().name == "StageA_UI") SceneManager.LoadScene(sceneName: "StageB_UI");
-			else if (SceneManager.GetActiveScene().name == "StageB_UI") SceneManager.LoadScene(sceneName: "StageA_UI");
+			if( currentMapFlg == 0) {
+				this.stageMap[0].SetActive(false);
+				this.stageMap[1].SetActive(true);
+				currentMapFlg = 1;
+			}
+			else if(currentMapFlg == 1) {
+				this.stageMap[1].SetActive(false);
+				this.stageMap[0].SetActive(true);
+				currentMapFlg = 0;
+			}
 		}
 
 		Debug.Log(this.Password);

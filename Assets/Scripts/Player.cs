@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
 
 	private bool haveDataFlg = false;
 	private int haveScore = 0;
+	//どちらの国の情報を持ってるか
+	private string haveDataside = "";
 	//[SerializeField]
 	//private UIManager uIManager;
 
@@ -62,7 +65,7 @@ public class Player : MonoBehaviour
 		rb.velocity = new Vector3(moveX, 0, moveZ);
 		//Dキーで加速(デバッグ用)
 		if (Input.GetKeyDown(KeyCode.D)) {
-			moveSpeed *= 2;
+			moveSpeed = 20;
 		}
 	}
 
@@ -74,9 +77,11 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				haveDataFlg = true;
+				if (SceneManager.GetActiveScene().name == "StageA_UI") haveDataside = "A";
+				else haveDataside = "B";
 				//uIManager.Password = other.GetComponent<Terminal>().Password;
 				Debug.Log("データを入手しました！");
-				MessageText.text = "データを入手しました！";
+				MessageText.text = haveDataside + "のデータを入手しました！";
 				messageAlpha = 1;
 				haveScore += Random.Range(100,1000);
 			}
@@ -86,7 +91,13 @@ public class Player : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
+				if ((SceneManager.GetActiveScene().name == "StageA_UI" && haveDataside == "A") || (SceneManager.GetActiveScene().name == "StageB_UI" && haveDataside == "B")) {
+					MessageText.text = "それはむり";
+					messageAlpha = 1; 
+					return;
+				}
 				haveDataFlg = false;
+				haveDataside = "";
 				Debug.Log("データを渡しました！");
 				MessageText.text = "データを渡しました！";
 				messageAlpha = 1;
