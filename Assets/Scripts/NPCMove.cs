@@ -101,7 +101,7 @@ public class NPCMove : MonoBehaviour
 				IsGameOver = true;
 			}
 
-			if (IsGameOver)
+			if (IsGameOver == true)
 			{
 				SceneManager.LoadScene("ResultScene");
 			}
