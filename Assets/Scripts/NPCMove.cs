@@ -20,8 +20,8 @@ public class NPCMove : MonoBehaviour
 	private Vector3 playerPos;
 	private Vector3 npcPos;
 
-	public float angle = 60.0f;
-	private float distance = 20.0f;
+	public float angle = 40.0f;
+	private float distance = 10.0f;
 	private RaycastHit hit;
 
 	public GameObject player;
