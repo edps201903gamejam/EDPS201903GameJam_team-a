@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class NPCMove : MonoBehaviour
 {
@@ -98,6 +99,11 @@ public class NPCMove : MonoBehaviour
 			if (other.gameObject.CompareTag("Player"))
 			{
 				IsGameOver = true;
-			}	
+			}
+
+			if (IsGameOver)
+			{
+				SceneManager.LoadScene("ResultScene");
+			}
 	}
 }
