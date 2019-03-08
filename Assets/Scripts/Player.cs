@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 		}
 		//Dキーで加速(デバッグ用)
 		if (Input.GetKeyDown(KeyCode.D)) {
-			moveSpeed = 20;
+			//moveSpeed = 20;
 		}
 	}
 
