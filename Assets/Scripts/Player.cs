@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		Debug.Log(haveScore);
 		if (uIManager.TerminalPassword == "") {
 			MoveSet();
 		}
@@ -113,7 +112,6 @@ public class Player : MonoBehaviour
 			{
 				se.PlayOneShot(sound[0]);
 				Terminal terminalData = other.GetComponent<Terminal>();
-				Debug.Log(terminalData.Password);
 				uIManager.TerminalPassword = terminalData.Password;
 				uIManager.TerminalScore = terminalData.TerminalScore;
 				uIManager.AccessedTerminal = terminalData;

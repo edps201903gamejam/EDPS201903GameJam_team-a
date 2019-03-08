@@ -305,7 +305,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.0000013763139}
-  m_SizeDelta: {x: 0, y: 1000}
+  m_SizeDelta: {x: 0, y: 2000}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &339002353
 MonoBehaviour:
@@ -339,7 +339,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Credits
+  m_Text: "Credits\n\ndecision14(\u6A5F\u68B0\u3063\u307D\u3044\u30B7\u30B9\u30C6\u30E0\u97F3):\u52B9\u679C\u97F3\u30E9\u30DC\u3000https://soundeffect-lab.info/
+    \  \n\ndecision7(\u30A2\u30D7\u30EA\u98A8\u30B7\u30B9\u30C6\u30E0\u97F3): \u52B9\u679C\u97F3\u30E9\u30DC
+    \ https://soundeffect-lab.info/   \n\ndecision20(\u306A\u3093\u304B\u304B\u3063\u3053\u3044\u3044\u30B7\u30B9\u30C6\u30E0\u97F3):\u52B9\u679C\u97F3\u30E9\u30DC\u3000https://soundeffect-lab.info/\n\npcswichon(PC\u306E\u8D77\u52D5\u97F3):\u30DD\u30B1\u30C3\u30C8\u30B5\u30A6\u30F3\u30C9\u3000https://pocket-se.info/
+    \n\n\u30BF\u30A4\u30D7\u30E9\u30A4\u30BF\u30FC\uFF08\u30AD\u30FC\uFF09:On-Jin
+    \uFF5E\u97F3\u4EBA\uFF5E  https://on-jin.com/   \n\nkyozetu: \u30DD\u30B1\u30C3\u30C8\u30B5\u30A6\u30F3\u30C9\u3000https://pocket-se.info/\n\n\u30FBYughues
+    Free Metal Materials\n\n\u3000Nobiax / Yughues\n\n\u30FBYughues Free Concrete
+    Materials\n\n  Nobiax / Yughues\n\n\u30FBWood Texture Floor\n\n\u3000Antonio Neves\n\n\u30FBPlank
+    Textures PBR\n\n\u3000A dog's life software\n\n   "
 --- !u!222 &339002354
 CanvasRenderer:
   m_ObjectHideFlags: 0

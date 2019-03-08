@@ -75,7 +75,6 @@ public class NPCMove : MonoBehaviour
 		if (points.Length == 0)
 			return;
 
-		Debug.Log("巡回中……");
 		agent.destination = points[destPoint].position;
 		if(isMapB && destPoint + 1 == points.Length)
 			Array.Reverse(points);
@@ -87,7 +86,6 @@ public class NPCMove : MonoBehaviour
 		while (chaseRemaining >= 0)
 		{
 			chaseRemaining -= Time.deltaTime;
-			Debug.Log("chase中……");
 			transform.rotation = Quaternion.Slerp(transform.rotation,
 			Quaternion.LookRotation(playerPos - transform.position), 0.01f);
 			transform.position += transform.forward * speed * 0.1f;
