@@ -156,7 +156,7 @@ Prefab:
         type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1314080464}
+      objectReference: {fileID: 1611688913}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa1e8e7859e6444f0bb27ea36b4ca818, type: 2}
   m_IsPrefabAsset: 0
@@ -6247,7 +6247,7 @@ Prefab:
       objectReference: {fileID: 1314080459}
     - target: {fileID: 1344735689575720, guid: 93085ea51469d46ea86ea38eef008410, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1029884519772984, guid: 93085ea51469d46ea86ea38eef008410, type: 2}
       propertyPath: m_IsActive
@@ -6664,12 +6664,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1695518532430130, guid: 26fab29818cbe4e98bd0daf3b5133221,
     type: 2}
   m_PrefabInternal: {fileID: 1482238155}
---- !u!114 &1314080464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114087864974379622, guid: 26fab29818cbe4e98bd0daf3b5133221,
-    type: 2}
-  m_PrefabInternal: {fileID: 1482238155}
-  m_Script: {fileID: 11500000, guid: ef987f1a302114f70a1ea5c0098a78d7, type: 3}
 --- !u!1 &1327214296
 GameObject:
   m_ObjectHideFlags: 0
@@ -8055,7 +8049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef987f1a302114f70a1ea5c0098a78d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 20
   uIManager: {fileID: 1070100907}
   MessageText: {fileID: 1238245279}
   stageMap:
@@ -10357,7 +10351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2083627268
 Transform:
   m_ObjectHideFlags: 0

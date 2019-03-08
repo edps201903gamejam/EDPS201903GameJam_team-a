@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour {
 	public static int datasize = 0;
 	//交換レート
 	public static float exchangeRate = 765f;
+	//タイプミス回数
+	public static int typemiss = 0;
 
 	[SerializeField]
 	Player player;

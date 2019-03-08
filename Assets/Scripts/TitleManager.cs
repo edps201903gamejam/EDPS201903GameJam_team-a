@@ -52,6 +52,9 @@ public class TitleManager : MonoBehaviour {
 			switch (focus) {
 				case 0:
 					SceneManager.LoadScene(sceneName: "StageA_UI");
+					ScoreManager.score = 0;
+					ScoreManager.datasize = 0;
+					ScoreManager.typemiss = 0;
 					break;
 				case 1:
 					isCredit = true;
