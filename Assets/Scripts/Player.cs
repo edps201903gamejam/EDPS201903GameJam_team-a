@@ -40,11 +40,16 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private GameObject[] stageMap = new GameObject[2];
 
+	private AudioSource se;
+	public AudioClip[] sound = new AudioClip[3];
+
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animation>();
 		anim["Walk"].speed = 1.5f;
+
+		se = this.GetComponent<AudioSource>();
 
 		//スタート時の初期位置
 		transform.position = new Vector3(44.4f, -16.25f, -25.9f);
@@ -80,6 +85,7 @@ public class Player : MonoBehaviour
 	//柱に入ったらマップ移動
 	private void OnTriggerEnter(Collider other) {
 		if( other.CompareTag("MoveArea")) {
+			se.PlayOneShot(sound[2]);
 			if (uIManager.CurrentMapFlg == 0) {
 				stageMap[0].SetActive(false);
 				stageMap[1].SetActive(true);
@@ -105,6 +111,7 @@ public class Player : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
+				se.PlayOneShot(sound[0]);
 				Terminal terminalData = other.GetComponent<Terminal>();
 				Debug.Log(terminalData.Password);
 				uIManager.TerminalPassword = terminalData.Password;
@@ -122,6 +129,8 @@ public class Player : MonoBehaviour
 					messageAlpha = 1; 
 					return;
 				}
+				
+				se.PlayOneShot(sound[1]);
 				haveDataFlg = false;
 				MessageText.text = "データを渡しました！";
 				messageAlpha = 1;

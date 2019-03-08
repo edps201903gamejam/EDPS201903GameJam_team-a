@@ -64,6 +64,14 @@ public class UIManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject Player;
 
+	private AudioSource se;
+	public AudioClip[] sound = new AudioClip[3];
+
+	private void Start()
+	{
+		se = this.GetComponent<AudioSource>();
+	}
+
 	// Update is called once per frame
 	void Update(){
 		//ミニマップのドット移動
@@ -133,12 +141,14 @@ public class UIManager : MonoBehaviour {
 			}
 			// 入力が成功している場合
 			if (Input.GetKeyDown(terminalPassword[0].ToString())) {
+				se.PlayOneShot(sound[0]);
 				numofTypingPassword++;
 				enteringPassword += terminalPassword[0];
 				EnteredPasswordText.text = enteringPassword;
 				this.terminalPassword = this.terminalPassword.Remove(0, 1);
 				strLength--;
 				if (strLength == 0) {
+					se.PlayOneShot(sound[2]);
 					player.HaveDataFlg = true;
 					player.HaveScore += terminalScore;
 					if(currentMapFlg == 0) {
@@ -170,6 +180,7 @@ public class UIManager : MonoBehaviour {
 
 			// 入力が失敗している場合
 			else if (!Input.GetKeyDown(terminalPassword[0].ToString()) && numofTypingPassword!=0) {
+				se.PlayOneShot(sound[1]);
 				MessageText.text = ("違います");
 				messageAlpha = 1;
 				ScoreManager.typemiss++;
