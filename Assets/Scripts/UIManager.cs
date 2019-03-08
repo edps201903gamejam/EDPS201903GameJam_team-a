@@ -97,22 +97,22 @@ public class UIManager : MonoBehaviour {
 		}
 
 		//Enterキーでリザに飛ぶ(デバッグ用)
-		if (Input.GetKeyDown(KeyCode.Return)) {
-			SceneManager.LoadScene(sceneName: "ResultScene");
-		}
+		//if (Input.GetKeyDown(KeyCode.Return)) {
+		//	SceneManager.LoadScene(sceneName: "ResultScene");
+		//}
 		//Mキーでステージ移動(デバッグ用)
-		else if (Input.GetKeyDown(KeyCode.M)) {
-			if( currentMapFlg == 0) {
-				this.stageMap[0].SetActive(false);
-				this.stageMap[1].SetActive(true);
-				currentMapFlg = 1;
-			}
-			else if(currentMapFlg == 1) {
-				this.stageMap[1].SetActive(false);
-				this.stageMap[0].SetActive(true);
-				currentMapFlg = 0;
-			}
-		}
+		//else if (Input.GetKeyDown(KeyCode.M)) {
+		//	if( currentMapFlg == 0) {
+		//		this.stageMap[0].SetActive(false);
+		//		this.stageMap[1].SetActive(true);
+		//		currentMapFlg = 1;
+		//	}
+		//	else if(currentMapFlg == 1) {
+		//		this.stageMap[1].SetActive(false);
+		//		this.stageMap[0].SetActive(true);
+		//		currentMapFlg = 0;
+		//	}
+		//}
 
 		if (terminalPassword != "") {
 			CompareTerminalPass(terminalPassword);

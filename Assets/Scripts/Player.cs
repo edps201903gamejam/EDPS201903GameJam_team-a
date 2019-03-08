@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animation>();
 		anim["Walk"].speed = 1.5f;
+
+		//スタート時の初期位置
+		transform.position = new Vector3(44.4f, -16.25f, -25.9f);
 	}
 
 	private void Update()
@@ -69,7 +72,7 @@ public class Player : MonoBehaviour
 		}
 		//Dキーで加速(デバッグ用)
 		if (Input.GetKeyDown(KeyCode.D)) {
-			moveSpeed = 20;
+			//moveSpeed = 20;
 		}
 	}
 
@@ -114,7 +117,7 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				if (uIManager.HaveDataSide == uIManager.CurrentMapFlg) {
-					MessageText.text = "それはむり";
+					MessageText.text = "そのデータは渡せません";
 					messageAlpha = 1; 
 					return;
 				}
