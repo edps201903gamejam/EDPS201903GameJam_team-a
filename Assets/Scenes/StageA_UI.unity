@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366756, g: 0.48427135, b: 0.56452316, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.56452316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7668,8 +7668,8 @@ Transform:
   m_LocalPosition: {x: -1.1570985, y: 0.060059357, z: -0.40194598}
   m_LocalScale: {x: 0.1, y: 0.2, z: 0.1}
   m_Children:
-  - {fileID: 1964276278}
   - {fileID: 245939807}
+  - {fileID: 1964276278}
   - {fileID: 1786658575}
   - {fileID: 1074611745}
   m_Father: {fileID: 1227640789}
@@ -8397,7 +8397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef987f1a302114f70a1ea5c0098a78d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 20
   uIManager: {fileID: 1070100907}
   MessageText: {fileID: 1238245279}
   stageMap:
