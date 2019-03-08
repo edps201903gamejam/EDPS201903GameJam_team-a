@@ -172,6 +172,7 @@ public class UIManager : MonoBehaviour {
 			else if (!Input.GetKeyDown(terminalPassword[0].ToString()) && numofTypingPassword!=0) {
 				MessageText.text = ("違います");
 				messageAlpha = 1;
+				ScoreManager.typemiss++;
 			}
 		}
 	}

@@ -12,6 +12,7 @@ public class TitleManager : MonoBehaviour {
 	public GameObject Credits;
 
 	private int focus = 0;
+	private bool isCredit = false;
 
 	void Start () {
 		
@@ -43,11 +44,20 @@ public class TitleManager : MonoBehaviour {
 			if (focus == -1) focus = 2;
 		}
 		else if (Input.GetKeyDown(KeyCode.Return)) {
+			if(isCredit) { 
+				Credits.SetActive(false);
+				isCredit = false;
+				return;
+			}
 			switch (focus) {
 				case 0:
 					SceneManager.LoadScene(sceneName: "StageA_UI");
+					ScoreManager.score = 0;
+					ScoreManager.datasize = 0;
+					ScoreManager.typemiss = 0;
 					break;
 				case 1:
+					isCredit = true;
 					Credits.SetActive(true);
 					break;
 			}

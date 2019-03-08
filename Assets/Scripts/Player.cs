@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.Log(haveScore);
 		if (uIManager.TerminalPassword == "") {
 			MoveSet();
 		}

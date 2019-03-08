@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultManager : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class ResultManager : MonoBehaviour {
 	private UnityEngine.UI.Text ResultScore;
 	[SerializeField]
 	private UnityEngine.UI.Text ResultMB;
+	[SerializeField]
+	private UnityEngine.UI.Text ResultTM;
 
 	// Use this for initialization
 	void Start () {
@@ -15,5 +18,12 @@ public class ResultManager : MonoBehaviour {
 		int totalDatasize = ScoreManager.datasize;
 		ResultScore.text = "$" + totalScore.ToString();
 		ResultMB.text = totalDatasize.ToString() + "MB";
+		ResultTM.text = ScoreManager.typemiss + "回";
+	}
+
+	private void Update() {
+		if( Input.GetKeyDown(KeyCode.R)) {
+			SceneManager.LoadScene( sceneName: "TitleScene" );
+		}
 	}
 }
